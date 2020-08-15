@@ -125,7 +125,8 @@ def main():
     Args: None
     Return: None h
     """
-
+    lista1 = [] #instanciar una lista vacia
+    lista2=[]
     while True:
         printMenu() #imprimir el menu de opciones en consola
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
