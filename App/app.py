@@ -86,7 +86,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
             Lista en la cual se realizará el conteo, debe estar inicializada
     Return:
         counter :: int
-            la cantidad de veces ue aparece un elemento con el criterio definido
+            la cantidad de veces que aparece un elemento con el criterio definido
     """
     if len(lst)==0:
         print("La lista esta vacía")  
@@ -100,6 +100,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
         t1_stop = process_time() #tiempo final
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
+
 
 def countElementsByCriteria(criteria, lst1,lst2):
     """
@@ -117,35 +118,42 @@ def countElementsByCriteria(criteria, lst1,lst2):
     return counter
 
 
+
 def main():
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
-
     Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
     Args: None
     Return: None h
     """
-    lista1 = [] #instanciar una lista vacia
-    lista2=[]
+
+    lista_casting = [] 
+    lista_details = []
     while True:
         printMenu() #imprimir el menu de opciones en consola
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                loadCSVFile("Data/SmallMoviesDetailsCleaned.csv", lista1)
-                loadCSVFile("Data/MoviesCastingRaw-small.csv", lista2) #llamar funcion cargar datos
-                print("Datos cargados, "+str(len(lista1)+len(lista2))+" elementos cargados")
+                dir_casting =input('Ingrese la dirección de la lista con el casting de las películas\n')
+                loadCSVFile(dir_casting, lista_casting) #llamar funcion cargar datos
+                print("Datos cargados, "+str(len(lista_casting))+" elementos cargados en la lista con el casting")
+                dir_details =input('Ingrese la dirección de la lista con los detalles de las películas\n')
+                loadCSVFile(dir_details, lista_details) #llamar funcion cargar datos
+                print("Datos cargados, "+str(len(lista_details))+" elementos cargados en la lista con el casting")
+                
             elif int(inputs[0])==2: #opcion 2
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,lista2,lista1)
-                print ("Hay "+str(counter)+" películas buenas de ese director.")
+                counter=countElementsByCriteria(criteria,lista_casting,lista_details)
+                print ("Hay "+str(counter)+" películas buenas de ese director.")   
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsFilteredByColumn(criteria, "nombre", lista1) #filtrar una columna por criterio  
+                column =input('Ingrese la columna en la que quiere buscar\n')
+                counter=countElementsFilteredByColumn(criteria, column, lista_casting) #filtrar una columna por criterio  
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,0,lista1)
+                counter=countElementsByCriteria(criteria,0,lista_casting)
+
                 print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
