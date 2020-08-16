@@ -7,7 +7,7 @@
 *	Sorting: archivos Python que implementan los algoritmos de ordenamiento.
 *	Test: pruebas unitarias en Python para validar el código desarrollado.
 
-# DATOS DE LOS INTEGRANTES DEL GRUPO
+# Datos de los integrantes del grupo
 
 * Maria Paula Gonzales: 
   m.gonzaleze@uniandes.edu.co
