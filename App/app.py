@@ -101,22 +101,23 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
 
-
 def countElementsByCriteria(criteria, lst1,lst2):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
     listiña=[]
     counter=0
+    promedio=0
     for pelicula in lst1:
         if pelicula["director_name"]==criteria:
             listiña.append(pelicula)
     for pelicula in lst2:
         for i in listiña:
-                if float(pelicula["vote_average"])>6 and pelicula["id"]==i["id"]:
+                if float(pelicula["vote_average"])>=6 and pelicula["id"]==i["id"]:
                     counter+=1
-    return counter
-
+                    promedio+=float(pelicula["vote_average"])
+    promedio/=counter
+    return (counter,promedio)
 
 
 def main():
@@ -143,8 +144,8 @@ def main():
                 
             elif int(inputs[0])==2: #opcion 2
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,lista_casting,lista_details)
-                print ("Hay "+str(counter)+" películas buenas de ese director.")   
+                counter,promedio=countElementsByCriteria(criteria,lista_casting,lista_details)
+                print ("Hay "+str(counter)+" películas buenas de ese director. Y "+str(promedio)+" es su promedio de la votacion.")   
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 column =input('Ingrese la columna en la que quiere buscar\n')
