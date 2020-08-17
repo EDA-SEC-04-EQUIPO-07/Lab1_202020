@@ -146,7 +146,7 @@ def main():
                 if (len(lista_casting)==0) or (len(lista_details)==0): #obtener la longitud de la lista
                     print("Alguna de las listas esta vacia")    
                 else: print("La lista con el casting tiene "+str(len(lista_casting))+" elementos y la lista con los detalles tiene " +str(len(lista_details))+" elementos" )
-
+          
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 column =input('Ingrese la columna en la que quiere buscar de la lista de los detalles de las películas\n')
