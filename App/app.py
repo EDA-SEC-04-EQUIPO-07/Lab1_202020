@@ -145,7 +145,7 @@ def main():
             elif int(inputs[0])==2: #opcion 2
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 counter,promedio=countElementsByCriteria(criteria,lista_casting,lista_details)
-                print ("Hay "+str(counter)+" películas buenas de ese director. Y "+str(promedio)+" es su promedio de la votacion.")   
+                print ("Hay "+str(counter)+" películas buenas de ese director. Y su promedio de la votacion es de "+str(promedio)+".")   
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 column =input('Ingrese la columna en la que quiere buscar\n')
