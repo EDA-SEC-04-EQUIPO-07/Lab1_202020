@@ -69,9 +69,9 @@ def printMenu():
     """
     print("\nBienvenido")
     print("1- Cargar Datos")
-    print("2- Encontrar películas buenas de un director en específico")
+    print("2- Encontrar la longitud de la lista")
     print("3- Contar elementos filtrados por palabra clave")
-    print("4- Consultar elementos a partir de dos listas")
+    print("4- Encontrar películas buenas de un director en específico")
     print("0- Salir")
 
 def countElementsFilteredByColumn(criteria, column, lst):
@@ -143,19 +143,20 @@ def main():
                 print("Datos cargados, "+str(len(lista_details))+" elementos cargados en la lista con el casting")
                 
             elif int(inputs[0])==2: #opcion 2
-                criteria =input('Ingrese el criterio de búsqueda\n')
-                counter,promedio=countElementsByCriteria(criteria,lista_casting,lista_details)
-                print ("Hay "+str(counter)+" películas buenas de ese director. Y "+str(promedio)+" es su promedio de la votacion.")   
+                if (len(lista_casting)==0) or (len(lista_details)==0): #obtener la longitud de la lista
+                    print("Alguna de las listas esta vacia")    
+                else: print("La lista con el casting tiene "+str(len(lista_casting))+" elementos y la lista con los detalles tiene " +str(len(lista_details))+" elementos" )
+          
             elif int(inputs[0])==3: #opcion 3
                 criteria =input('Ingrese el criterio de búsqueda\n')
-                column =input('Ingrese la columna en la que quiere buscar\n')
-                counter=countElementsFilteredByColumn(criteria, column, lista_casting) #filtrar una columna por criterio  
+                column =input('Ingrese la columna en la que quiere buscar de la lista de los detalles de las películas\n')
+                counter=countElementsFilteredByColumn(criteria, column, lista_details) #filtrar una columna por criterio  
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
-            elif int(inputs[0])==4: #opcion 4
-                criteria =input('Ingrese el criterio de búsqueda\n')
-                counter=countElementsByCriteria(criteria,0,lista_casting)
 
-                print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
+            elif int(inputs[0])==4: #opcion 4
+                criteria =input('Ingrese el nombre del director\n')
+                counter,promedio=countElementsByCriteria(criteria,lista_casting,lista_details)
+                print ("Hay "+str(counter)+" películas buenas de ese director. Y "+str(promedio)+" es su promedio de la votacion.")  
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
